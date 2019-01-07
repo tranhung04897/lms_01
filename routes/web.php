@@ -1,4 +1,5 @@
 <?php
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +11,12 @@
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::group(['prefix' => 'admin/'], function (){
-    Route::post('user/update', 'admin\Users@update')->name('admin.users.edit');
-    Route::resource('user', 'admin\Users');
+    Route::resource('user', 'admin\Users' );
+    Route::post('user/update', 'admin\Users@update')->name('user.edit');
+    Route::resource('search', 'admin\Search');
 });

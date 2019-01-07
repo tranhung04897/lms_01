@@ -10,12 +10,11 @@
                             <button type="button" class="btn btn-success btn-md" data-toggle="modal" data-target="#myModal">
                                 @lang('user.btn-add')
                             </button>
-                            @include('errors.error')
                             @include('admin.users.add')
                         </div>
-                        <div class="col-sm-6" >
+                        <div class="col-sm-6">
                             {!! Form::open(['method' => 'POST', 'route' =>'search.store']) !!}
-                            {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
+                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -33,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($getSearch as $user)
                             @php
                                 $id = $user->id;
                                 $gender = $user->gender;
@@ -46,13 +45,25 @@
 
                             <tr class="gradeX">
                                 <td>{!! $name !!}</td>
-                                <td>{!! $gender !!}</td>
+                                <td>
+                                    @if($gender === config('setting.gender-default'))
+                                        @lang('user.select-female')
+                                    @else
+                                        @lang('user.select-male')
+                                    @endif
+                                </td>
                                 <td>{!! $email !!}</td>
-                                <td>{!! $role !!}</td>
+                                <td>
+                                    @if($role === config('setting.role-mod'))
+                                        @lang('user.role-mod')
+                                    @else
+                                        @lang('user.role-admin')
+                                    @endif
+                                </td>
                                 <td>{!! $phone !!}</td>
                                 <td>{!! $address !!}</td>
                                 <td class="center">
-                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}" data-password="{!! $user->password !!}" data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
+                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}" data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
                                         <i class="fa fa-edit "></i>@lang('user.btn-edit')
                                     </button>
                                     @include('admin.users.edit')
@@ -62,6 +73,7 @@
 
                                 </td>
                             </tr>
+
                         @endforeach
                         </tbody>
 
@@ -72,7 +84,7 @@
                         </a>
                     </div>
                     <div>
-                        {{ $users->links() }}
+                        {{ $getSearch->links() }}
                     </div>
                 </div>
 
