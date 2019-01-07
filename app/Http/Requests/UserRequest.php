@@ -29,8 +29,6 @@ class UserRequest extends FormRequest
             'name' => 'required|max:50',
             'address' => 'required',
             'phone' => 'required',
-            'gender' => 'required',
-            'dob' => 'required',
 
         ];
     }

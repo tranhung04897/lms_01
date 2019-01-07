@@ -1,11 +1,10 @@
 <?php
-
 namespace App\Http\Controllers\admin;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Excel;
 class Users extends Controller
 {
     /**
@@ -19,7 +18,6 @@ class Users extends Controller
 
         return view('admin.users.index', compact('users') );
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -38,13 +36,12 @@ class Users extends Controller
             $user->birthday = $request->dob;
             $user->save();
 
-            return redirect(route('admin.users.index'))->with('success', trans('errors.add-success'));
+            return redirect(route('user.index'))->with('success', trans('errors.add-success'));
         } catch (Exception $exception) {
 
-            return redirect(route('admin.users.index'))->with('fail', trans('errors.add-fail'));
+            return redirect(route('user.index'))->with('fail', trans('errors.add-fail'));
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -63,7 +60,6 @@ class Users extends Controller
             return redirect("/admin/user")->with('fail', trans('errors.edit-fail'));
         }
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -81,5 +77,47 @@ class Users extends Controller
 
             return redirect("/admin/user")->with('fail', trans('errors.del-fail'));
         }
+    }
+    public function create()
+    {
+        $user_data = User::orderBy('id', 'desc')->get();
+        $user_array[] = array('ID', 'Name', 'Email', 'Role', 'Dob', 'Address', 'Phone', 'Gender');
+        foreach ($user_data as $user)
+        {
+            $id = $user->id;
+            $name = $user->name;
+            $email = $user->email;
+            $dob = $user->birthday;
+            $address = $user->address;
+            $phone = $user->phone;
+            if($user->role === config('setting.role-mod') ) {
+                $role = trans('user.role-mod');
+            } else{
+                $role = trans('user.role-admin');
+            }
+            if($user->gender === config('setting.default') ) {
+                $gender = trans('user.select-female');
+            } else{
+                $gender = trans('user.select-male');
+            }
+            $user_array[] = array(
+                'ID' => $id,
+                'Name' => $name,
+                'Email' => $email,
+                'Role' => $role,
+                'Dob' => $dob,
+                'Address' => $address,
+                'Phone' => $phone,
+                'Gender' => $gender,
+            );
+        }
+        Excel::create('User Data', function($excel) use ($user_array)
+        {
+            $excel->setTitle('User Data');
+            $excel->sheet('User Data', function($sheet) use ($user_array)
+            {
+                $sheet->fromArray($user_array, null, config('setting.sheet-default'), false, false);
+            });
+        })->download('xlsx');
     }
 }
