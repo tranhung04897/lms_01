@@ -11,11 +11,11 @@
                                 @lang('user.btn-add')
                             </button>
                             @include('errors.error')
-                            @include('admin.users.add')
+                            @include('admin.authors.add')
                         </div>
                         <div class="col-sm-6" >
-                            {!! Form::open(['method' => 'POST', 'route' =>'search.store']) !!}
-                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => trans('admin.txt-search')]) !!}
+                            {!! Form::open(['method' => 'POST', 'route' =>'searchauth.store']) !!}
+                                {!! Form::text('search', old('search'), ['class' => 'form-control input-sm', 'placeholder' => trans('admin.txt-search')]) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -23,40 +23,31 @@
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                         <thead>
                         <tr>
-                            <th>@lang('user.th-name')</th>
-                            <th>@lang('user.lb-gender')</th>
-                            <th>@lang('user.th-email')</th>
-                            <th>@lang('user.th-role')</th>
-                            <th>@lang('user.th-phone')</th>
-                            <th>@lang('user.th-address')</th>
+                            <th>@lang('authors.th-id')</th>
+                            <th>@lang('authors.th-name')</th>
+                            <th>@lang('authors.th-follow')</th>
                             <th>@lang('user.th-function')</th>
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($users as $user)
+                        @foreach($authors as $author)
                             @php
-                                $id = $user->id;
-                                $gender = $user->gender;
-                                $name = $user->name;
-                                $email = $user->email;
-                                $role = $user->role;
-                                $phone = $user->phone;
-                                $address = $user->address;
+                                $id = $author->id;
+                                $follow = $author->num_follow;
+                                $name = $author->name;
+
                             @endphp
 
                             <tr class="gradeX">
+                                <td>{!! $loop->index !!}</td>
                                 <td>{!! $name !!}</td>
-                                <td>{{$gender}}</td>
-                                <td>{!! $email !!}</td>
-                                <td>{{$role}}</td>
-                                <td>{!! $phone !!}</td>
-                                <td>{!! $address !!}</td>
+                                <td>{!! $follow !!}</td>
                                 <td class="center">
-                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}" data-password="{!! $user->password !!}" data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
+                                    <button type="button" class="btn btn-primary" data-id_author="{!! $id !!}" data-name="{!! $name!!}" data-toggle="modal" data-target="#myModal1">
                                         <i class="fa fa-edit "></i>@lang('user.btn-edit')
                                     </button>
-                                    @include('admin.users.edit')
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['user.destroy', $id]]) !!}
+                                    @include('admin.authors.edit')
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['author.destroy', $id]]) !!}
                                         {!! Form::submit(trans('user.btn-del'), ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!}
 
@@ -67,12 +58,12 @@
 
                     </table>
                     <div>
-                        <a href="{{route('user.create')}}" class="btn btn-success" >
+                        <a href="{{route('author.create')}}" class="btn btn-success" >
                             @lang('user.export-to-excel')
                         </a>
                     </div>
                     <div>
-                        {{ $users->links() }}
+                        {{ $authors->links() }}
                     </div>
                 </div>
 

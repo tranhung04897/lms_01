@@ -19,6 +19,10 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
     Route::resource('user', 'admin\Users' );
     Route::post('user/update', 'admin\Users@update')->name('user.edit');
     Route::resource('search', 'admin\Search');
+    Route::resource('author', 'admin\Authors' );
+    Route::post('author/update', 'admin\Authors@update')->name('author.edit');
+    Route::resource('searchauth', 'admin\SearchAuthor' );
+
 });
 
 Route::group(['prefix' => '/'], function (){
