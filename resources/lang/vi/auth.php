@@ -16,15 +16,8 @@ return [
     'failed' => 'These credentials do not match our records.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'title' => 'Login Form',
-    'linkregister' => 'Do not have an account?',
-    'register' => 'Sign Up',
-    'login' => 'Sign In',
-    'message-fail' => 'Login Fail',
-    'username' => 'Username',
-    'password' => 'Password',
-    'repassword' => 'Confirm-Password',
-    'fullname' => 'Fullname',
-    'email' => 'Email',
-    'linklogin' => 'you had account !',
+    'linkregister' => 'Bạn có tài khoản?',
+    'register' => 'Đăng ký',
+    'login' => 'Đăng Nhập',
 
 ];
