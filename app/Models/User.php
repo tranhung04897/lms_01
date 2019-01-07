@@ -57,7 +57,7 @@ class User extends Authenticatable
     {
         if($role === config('setting.role-mod'))
         {
-          return  trans('user.role-mod');
+            return  trans('user.role-mod');
         }
 
         return trans('user.role-admin');

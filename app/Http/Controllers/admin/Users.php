@@ -5,6 +5,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
 use Excel;
+use Illuminate\Support\Facades\Hash;
+
 class Users extends Controller
 {
     /**
@@ -28,7 +30,7 @@ class Users extends Controller
         try{
             $user = new User;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
             $user->name = $request->name;
             $user->phone = $request->phone;
             $user->address = $request->address;

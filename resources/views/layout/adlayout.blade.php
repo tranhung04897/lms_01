@@ -24,9 +24,10 @@
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
             </div>
             <a href="index.html" class="logo"><b>@lang('admin.logo')</b></a>
+
             <div class="top-menu">
                 <ul class="nav pull-right top-menu">
-                    <li><a class="logout" href="login.html">@lang('admin.logout-link')</a></li>
+                    <li><a class="logout" href="{{route('login.create')}}">@lang('admin.logout-link')</a></li>
                 </ul>
             </div>
         </header>
@@ -34,7 +35,7 @@
             <div id="sidebar" class="nav-collapse ">
                 <ul class="sidebar-menu" id="nav-accordion">
                     <p class="centered"><a href="profile.html"><img src="img/ui-sam.jpg" class="img-circle" width="80"></a></p>
-                    <h5 class="centered">@lang('admin.centered')</h5>
+                    <h5 class="centered">{{Auth::user()->name}}</h5>
                     <li class="mt">
                         <a class="active" href="index.html">
                             <i class="fa fa-dashboard"></i>

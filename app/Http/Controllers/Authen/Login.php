@@ -24,7 +24,9 @@ class Login extends Controller
      */
     public function create()
     {
-        //
+        Auth::logout();
+
+        return redirect()->route('home.index');
     }
 
     /**
@@ -37,12 +39,15 @@ class Login extends Controller
     {
         $email = $request->log_username;
         $password = $request->log_password;
-        if( Auth::attempt(['email' => $email, 'password' =>$password]))
-        {
-            return redirect()->route('home.index');
-        }
-        else
-        {
+        if( Auth::attempt(['email' => $email, 'password' =>$password])) {
+            if(auth()->user()->role === config('setting.admin')) {
+
+                return redirect(route('admin.index'));
+            }
+
+            return redirect(route('home.index'));
+        } else {
+
             return redirect()->back()->with('fail', trans('auth.message-fail'))->withInput();
         }
     }
