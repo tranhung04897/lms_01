@@ -30,7 +30,7 @@
       <a href="index.html" class="logo"><b>@lang('admin.logo')</b></a>
       <div class="top-menu">
         <ul class="nav pull-right top-menu">
-          <li><a class="logout" href="login.html">@lang('admin.logout')</a></li>
+          <li><a class="logout" href="login.html">@lang('admin.logout-link')</a></li>
         </ul>
       </div>
     </header>
@@ -105,13 +105,14 @@
   {{ Html::script(asset('/js/lib/jquery.dcjqaccordion.2.7.js')) }}
   {{ Html::script(asset('js/lib/common-scripts.js')) }}
   {{ Html::script(asset('js/lib/gritter/js/jquery.gritter.js')) }}
+  {{ Html::style(asset('js/lib/gritter/css/jquery.gritter.css')) }}
   {{ Html::script(asset('js/lib/gritter-conf.js')) }}
   {{ Html::script(asset('js/lib/sparkline-chart.js')) }}
   {{ Html::script(asset('js/lib/zabuto_calendar.js')) }}
   <script type="text/javascript">
     $(document).ready(function() {
       var unique_id = $.gritter.add({
-        title: 'Welcome to Dashio!',
+        title: 'Welcome to Admin!',
         text: 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo.',
         image: 'img/ui-sam.jpg',
         sticky: false,
@@ -164,6 +165,25 @@
       console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
     }
   </script>
+
+    <script>
+        $('#myModal1').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var id_user = button.data('id_user')
+            var email = button.data('email')
+            var name = button.data('name')
+            var phone = button.data('phone')
+            var address = button.data('address')
+            var modal = $(this)
+
+            modal.find('.modal-body #id_user').val(id_user);
+            modal.find('.modal-body #email').val(email);
+            modal.find('.modal-body #name').val(name);
+            modal.find('.modal-body #address').val(address);
+            modal.find('.modal-body #phone').val(phone);
+
+        })
+    </script>
 </body>
 
 </html>

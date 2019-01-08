@@ -13,6 +13,6 @@ return [
     'sub-publisher' => 'Publisher',
     'menu-user' => 'Users',
     'menu-comment' => 'Comments',
-    'google-map' => 'Google Maps'
-
+    'google-map' => 'Google Maps',
+    'border-head' => 'USER VISITS',
 ];
