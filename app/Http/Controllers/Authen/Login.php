@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Authen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 class Login extends Controller
@@ -39,7 +40,12 @@ class Login extends Controller
         $password = $request->log_password;
         if( Auth::attempt(['email' => $email, 'password' =>$password]))
         {
-            return redirect()->route('home.index');
+            if(auth()->user()->role == config('setting.role-mod'))
+            {
+                return redirect()->route('home.index');
+            }
+
+            return redirect()->route('admin.index');
         }
         else
         {

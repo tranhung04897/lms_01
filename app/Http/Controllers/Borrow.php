@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Book;
-use App\Models\Category;
-use App\Models\Publisher;
-use App\Models\Author;
 
-class Home extends Controller
+class Borrow extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,12 +13,7 @@ class Home extends Controller
      */
     public function index()
     {
-        $cats = Category::orderBy('id','desc')->get();
-        $menus = Category::where('parent_id',0)->orderBy('id')->get();
-        $submenus = Category::where('parent_id','!=',0)->get();
-        $books = Book::orderBy('id','desc')->get();
-
-        return view('user.index', compact('menus', 'submenus', 'books', 'cats'));
+        //
     }
 
     /**
@@ -44,7 +34,8 @@ class Home extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $quantity = $request->quantity;
+        dd($quantity);
     }
 
     /**

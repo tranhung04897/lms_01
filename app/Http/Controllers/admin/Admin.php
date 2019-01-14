@@ -12,3 +12,4 @@ class Admin extends Controller
     	return view('admin.index');
     }
 }
+

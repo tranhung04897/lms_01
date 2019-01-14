@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 use Excel;
 class Users extends Controller
 {
@@ -28,7 +29,7 @@ class Users extends Controller
         try{
             $user = new User;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
             $user->name = $request->name;
             $user->phone = $request->phone;
             $user->address = $request->address;
@@ -92,12 +93,12 @@ class Users extends Controller
             $phone = $user->phone;
             if($user->role === config('setting.role-mod') ) {
                 $role = trans('user.role-mod');
-            } else{
+            } else {
                 $role = trans('user.role-admin');
             }
             if($user->gender === config('setting.default') ) {
                 $gender = trans('user.select-female');
-            } else{
+            } else {
                 $gender = trans('user.select-male');
             }
             $user_array[] = array(

@@ -15,6 +15,7 @@ Route::get('/locale/{locale}', function($locale){
     return redirect()->back();
 });
 Route::group(['prefix' => 'admin/'], function (){
+    Route::resource('/', 'admin\Admin');
     Route::resource('user', 'admin\Users' );
     Route::post('user/update', 'admin\Users@update')->name('user.edit');
     Route::resource('search', 'admin\Search');
@@ -26,5 +27,5 @@ Route::group(['prefix' => '/'], function (){
     Route::resource('detail', 'Detail');
     Route::resource('login', 'Authen\Login');
     Route::resource('register', 'Authen\Register');
-    //Route::post('home/register', 'admin\Users@update')->name('user.edit');
+    Route::resource('borrow', 'Borrow');
 });

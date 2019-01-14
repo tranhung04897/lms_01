@@ -72,16 +72,26 @@
                         <nav class="navbar">
                             <ul class="navbar_menu">
                                 <li><a href="#">@lang('public.nav-home')</a></li>
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">@lang('public.nav-category')
-                                        <span class="caret"></span>
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="{{ route('category.show','1') }}">HTML</a></li>
-                                        <li><a href="{{ route('category.show','1') }}">CSS</a></li>
-                                        <li><a href="{{ route('category.show','1') }}">JavaScript</a></li>
-                                    </ul>
-                                </li>
+                                @foreach($menus as $menu)
+                                    <li class="dropdown"><a href="{{ route('category.show', $menu->id) }}" class="dropdown-toggle" data-toggle="dropdown"> {!! $menu->name !!}</a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            @foreach($submenus as $submenu)
+                                                @if($submenu->parent_id === $menu->id)
+                                                    <li><a href="{{ route('category.show', $submenu->id) }}">{!! $submenu->name !!}</a>
+                                                        @foreach($submenus as $smenu)
+                                                            @if($smenu->parent_id === $submenu->id)
+                                                                <ul class="dropdown-submenu" role="menu">
+                                                                    <li><a href="{{ route('category.show', $smenu->id) }}">{!! $smenu->name !!}</a>
+                                                                    </li>
+                                                                </ul>
+                                                            @endif
+                                                        @endforeach
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </li>
+                                    @endforeach
                                 <li><a href="#">@lang('public.nav-author')</a></li>
                                 <li><a href="#">@lang('public.nav-blog')</a></li>
                                 <li><a href="contact.html">@lang('public.nav-contact')</a></li>

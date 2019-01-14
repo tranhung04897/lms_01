@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Book;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class Detail extends Controller
 {
@@ -45,7 +49,12 @@ class Detail extends Controller
      */
     public function show($id)
     {
-        return view('user.detail');
+        $cats = Category::orderBy('id','desc')->get();
+        $menus = Category::where('parent_id',0)->orderBy('id')->get();
+        $submenus = Category::where('parent_id','!=',0)->get();
+        $books = Book::findOrFail($id);
+
+        return view('user.detail', compact('menus', 'submenus', 'books'));
     }
 
     /**
