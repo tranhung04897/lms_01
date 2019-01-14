@@ -17,4 +17,10 @@ return [
     'border-head' => 'USER VISITS',
     'btn-close' => 'Close',
     'txt-search' => 'Enter Search',
+    'th-id' => 'STT',
+    'name-user' => 'User',
+    'th-book' => 'Book',
+    'th-day-borrow' => 'Day Borrow',
+    'th-end-day' => 'End Day Borrow',
+    'th-status' => 'status',
 ];

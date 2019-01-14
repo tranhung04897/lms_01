@@ -48,7 +48,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('btn-close')</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('user.btn-close')</button>
             </div>
 
         </div>

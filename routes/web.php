@@ -22,7 +22,21 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
     Route::resource('author', 'admin\Authors' );
     Route::post('author/update', 'admin\Authors@update')->name('author.edit');
     Route::resource('searchauth', 'admin\SearchAuthor' );
-
+    Route::resource('publisher', 'admin\Publishers' );
+    Route::post('publisher/update', 'admin\Publishers@update')->name('publisher.edit');
+    Route::resource('publisher/search', 'admin\SearchPublisher');
+    Route::resource('borrow', 'admin\Borrowbook' );
+    Route::post('/borrow/update-status',[
+        'uses' => 'admin\Borrowbook@updateStatus',
+    ]);
+    Route::resource('cat', 'admin\Categorys' );
+    Route::post('cat/update', 'admin\Categorys@update')->name('cat.edit');
+    Route::resource('book', 'admin\Books' );
+    Route::post('book/update', 'admin\Books@update')->name('book.edit');
+    Route::post('/book/update-status',[
+        'uses' => 'admin\Books@updateStatus',
+    ]);
+    Route::resource('searchbook', 'admin\SearchBook' );
 });
 
 Route::group(['prefix' => '/'], function (){
