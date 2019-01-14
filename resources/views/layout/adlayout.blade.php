@@ -109,6 +109,5 @@
     {{ Html::script(asset('js/lib/zabuto_calendar.js')) }}
     {{ Html::script(asset('js/ajax/welcome.js')) }}
     {{ Html::script(asset('js/ajax/edituser.js')) }}
-    {{ Html::script(asset('js/ajax/editauthor.js')) }}
     </body>
 </html>
