@@ -11,6 +11,7 @@ use App\Models\Borrow_Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
+use Cart;
 
 class Detail extends Controller
 {
@@ -40,24 +41,29 @@ class Detail extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$id)
+    public function store(Request $request)
     {
-        try{
+        try {
             $borrow = Borrow::create([
-               'user_id' => Auth::user()->id,
+                'user_id' => Auth::user()->id,
                 'day_borrow' => $request->dayborrow,
                 'end_day_borrow' => $request->endborrow,
-                'quantity' => $request->quantity,
             ]);
-            $borrow_book = new Borrow_Book;
-            $borrow_book->borrow_id = $borrow->id;
-            $borrow_book->book_id = $id;
-            $borrow_book->save();
+            if(Cart::count()){
+                foreach (Cart::content() as $item){
+                    $borrow_book = new Borrow_Book;
+                    $borrow_book->borrow_id = $borrow->id;
+                    $borrow_book->book_id = $item->id;
+                    $borrow_book->quantity = $item->qty;
+                    $borrow_book->save();
+                }
+            }
+            Cart::destroy();
 
-            return redirect(route('detail.show',$id))->with('success', trans('public.message-borrow-success'));
+            return redirect(route('cart.create'))->with('success', trans('public.message-borrow-success'));
         } catch (Exception $exception) {
 
-            return redirect(route('detail.show',$id))->with('fail', trans('public.message-borrow-fail'));
+            return redirect(route('cart.create'))->with('fail', trans('public.message-borrow-fail'));
         }
     }
 

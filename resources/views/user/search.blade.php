@@ -65,14 +65,12 @@
             <div class="row">
                 <div class="col">
                     <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-
                         @foreach($getSearch as $book)
-
                             <div class="product-item {{$book->category_id}}">
                                 <div class="product discount product_filter">
                                     <div class="product_image">
-                                        <a href="{{ route('detail.show', $book->id) }}" >
-                                            <img class="mystyle" src="/assets/images/{{$book->picture}}" alt="">
+                                        <a href="{{ route('detail.show', $book->id) }}">
+                                            <img class="mystyle" src="/assets/images/{{$book->picture}}" >
                                         </a>
                                     </div>
                                     <div class="product_info">
@@ -83,7 +81,6 @@
                                 <div class="red_button add_to_cart_button"><a href="{{ route('detail.show', $book->id) }}">@lang('public.btn-borrow')</a></div>
                             </div>
                         @endforeach
-
                     </div>
                 </div>
             </div>

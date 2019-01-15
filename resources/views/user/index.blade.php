@@ -78,7 +78,11 @@
                                     </div>
                                 </div>
                                 <div class="favorite favorite_left"></div>
-                                <div class="red_button add_to_cart_button"><a href="{{ route('detail.show', $book->id) }}">@lang('public.btn-borrow')</a></div>
+                                {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $book->id], 'class' => 'red_button add_to_cart_button']) !!}
+                                    {!! Form::hidden('book_id', $book->id) !!}
+                                    {!! Form::hidden('_token', csrf_token()) !!}
+                                    {{ Form::submit(trans('public.btn-borrow', ['class' => 'red_button add_to_cart_button']))  }}
+                                {!! Form::close() !!}
                             </div>
                         @endforeach
 

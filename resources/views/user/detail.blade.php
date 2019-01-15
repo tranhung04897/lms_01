@@ -55,7 +55,8 @@
                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                         </ul>
                     </div>
-                    {!! Form::open(['method' => 'POST', 'route' => ['detail.add', $books->id] ]) !!}
+                    {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $books->id]]) !!}
+                        {!! Form::hidden('book_id', $books->id) !!}
                         {!! Form::submit(trans('public.btn-borrow'), ['class' => 'btn btn-success btn-md']) !!}
                     {!! Form::close() !!}
                 </div>
