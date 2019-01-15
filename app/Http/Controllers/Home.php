@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Book;
 
 class Home extends Controller
 {
@@ -13,7 +15,11 @@ class Home extends Controller
      */
     public function index()
     {
-        return view('user.index');
+        $categories = Category::with('childs')->where('parent_id', 0)->get();
+        $cats = Category::where('parent_id', '!=', 0)->get();
+        $books = Book::orderBy('id', 'desc')->get();
+
+        return view('user.index', compact('categories', 'books', 'cats'));
     }
 
     /**
