@@ -45,25 +45,14 @@
 
                             <tr class="gradeX">
                                 <td>{!! $name !!}</td>
-                                <td>
-                                    @if($gender === config('setting.gender-default'))
-                                        @lang('user.select-female')
-                                    @else
-                                        @lang('user.select-male')
-                                    @endif
-                                </td>
+                                <td>{{$gender}}</td>
                                 <td>{!! $email !!}</td>
-                                <td>
-                                    @if($role === config('setting.role-mod'))
-                                        @lang('user.role-mod')
-                                    @else
-                                        @lang('user.role-admin')
-                                    @endif
-                                </td>
+                                <td>{{$role}}</td>
                                 <td>{!! $phone !!}</td>
                                 <td>{!! $address !!}</td>
                                 <td class="center">
-                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}" data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
+                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}"
+                                            data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
                                         <i class="fa fa-edit "></i>@lang('user.btn-edit')
                                     </button>
                                     @include('admin.users.edit')

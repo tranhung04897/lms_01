@@ -14,7 +14,8 @@ Route::get('/locale/{locale}', function($locale){
     Session::put('locale', $locale);
     return redirect()->back();
 });
-Route::group(['prefix' => 'admin/'], function (){
+Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function (){
+    Route::resource('admin', 'admin\Admin');
     Route::resource('user', 'admin\Users' );
     Route::post('user/update', 'admin\Users@update')->name('user.edit');
     Route::resource('search', 'admin\Search');

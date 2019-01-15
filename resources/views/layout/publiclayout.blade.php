@@ -52,8 +52,12 @@
                                         <i class="fa fa-angle-down"></i>
                                     </a>
                                     <ul class="account_selection">
-                                        <li><a href="{{ route('login.index') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>@lang('public.login')</a></li>
-                                        <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i>@lang('public.logout')</a></li>
+                                        @if(Auth::check())
+                                            <li><a href="#"><i class="fa fa-user"></i>{{ Auth::user()->name }} </a></li>
+                                            <li><a href="{{ route('login.create') }}"><i class="fa fa-user-plus" aria-hidden="true"></i>@lang('public.logout')</a></li>
+                                        @else
+                                            <li><a href="{{ route('login.index') }}"><i class="fa fa-sign-in" aria-hidden="true"></i>@lang('public.login')</a></li>
+                                        @endif
                                     </ul>
                                 </li>
                             </ul>

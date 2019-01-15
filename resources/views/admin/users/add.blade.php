@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     {!! Form::label('gender', trans('user.lb-gender'), ['class' => 'col-md-4 col-form-label']) !!}
-                    {!! Form::select('gender', ['0' => trans('user.select-female'), '1' => trans('user.select-male')]) !!}
+                    {!! Form::select('gender', [config('setting.gender-female') => trans('user.select-female'), config('setting.gender-male') => trans('user.select-male')]) !!}
                 </div>
 
                 <div class="form-group">
