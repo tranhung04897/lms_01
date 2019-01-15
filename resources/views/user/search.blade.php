@@ -56,7 +56,7 @@
                         <ul class="arrivals_grid_sorting clearfix button-group filters-button-group">
                             <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center active is-checked" data-filter="*">all</li>
                             @foreach($cats as $cat)
-                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".{!! $cat->id !!}">{!! $cat->name !!}</li>
+                            <li class="grid_sorting_button button d-flex flex-column justify-content-center align-items-center" data-filter=".{{$cat->id}}">{{$cat->name}}</li>
                             @endforeach
                         </ul>
                     </div>
@@ -65,12 +65,14 @@
             <div class="row">
                 <div class="col">
                     <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
-                        @foreach($books as $book)
+
+                        @foreach($getSearch as $book)
+
                             <div class="product-item {{$book->category_id}}">
                                 <div class="product discount product_filter">
                                     <div class="product_image">
-                                        <a href="{{ route('detail.show', $book->id) }}">
-                                            <img class="mystyle" src="/assets/images/{{$book->picture}}" >
+                                        <a href="{{ route('detail.show', $book->id) }}" >
+                                            <img class="mystyle" src="/assets/images/{{$book->picture}}" alt="">
                                         </a>
                                     </div>
                                     <div class="product_info">
@@ -87,6 +89,4 @@
             </div>
         </div>
     </div>
-
-
 @endsection
