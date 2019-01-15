@@ -5,6 +5,7 @@ $('#myModal1').on('show.bs.modal', function (event) {
     var name = button.data('name')
     var phone = button.data('phone')
     var address = button.data('address')
+    var password = button.data('password')
     var modal = $(this)
 
     modal.find('.modal-body #id_user').val(id_user);
@@ -12,5 +13,6 @@ $('#myModal1').on('show.bs.modal', function (event) {
     modal.find('.modal-body #name').val(name);
     modal.find('.modal-body #address').val(address);
     modal.find('.modal-body #phone').val(phone);
+    modal.find('.modal-body #password').val(password);
 
 })

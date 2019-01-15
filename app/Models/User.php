@@ -52,4 +52,24 @@ class User extends Authenticatable
     {
         return $this->hasMany('Follow::class');
     }
+
+    public function getRoleAttribute($role)
+    {
+        if($role === config('setting.role-mod'))
+        {
+          return  trans('user.role-mod');
+        }
+
+        return trans('user.role-admin');
+    }
+
+    public function getGenderAttribute($gender)
+    {
+        if($gender === config('setting.gender-default'))
+        {
+            return  trans('user.select-female');
+        }
+
+        return trans('user.select-male');
+    }
 }
