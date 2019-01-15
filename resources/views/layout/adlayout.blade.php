@@ -15,6 +15,7 @@
         {{ Html::style(asset('lib/gritter/css/jquery.gritter.css')) }}
         {{ Html::style(asset('css/style.css')) }}
         {{ Html::style(asset('css/style-responsive.css')) }}
+        {{ Html::style(asset('css/mystyle.css')) }}
         {{ Html::script(asset('js/lib/chart-master/Chart.js')) }}
     </head>
     <body>

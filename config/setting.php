@@ -9,4 +9,5 @@ return [
     'paginate-default' => 5,
     'user' => 'User',
     'admin' => 'Admin',
+    'parent_id' => 0,
 ];
