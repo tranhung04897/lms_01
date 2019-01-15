@@ -15,10 +15,9 @@ class Home extends Controller
      */
     public function index()
     {
-        $categories = Category::with('childs')->where('parent_id', 0)->get();
+        $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
         $cats = Category::where('parent_id', '!=', 0)->get();
         $books = Book::orderBy('id', 'desc')->get();
-
         return view('user.index', compact('categories', 'books', 'cats'));
     }
 

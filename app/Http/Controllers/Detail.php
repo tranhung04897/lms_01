@@ -52,7 +52,6 @@ class Detail extends Controller
             $borrow_book->borrow_id = $borrow->id;
             $borrow_book->book_id = $id;
             $borrow_book->save();
-
             return redirect(route('detail.show',$id))->with('success', trans('public.message-borrow-success'));
         } catch (Exception $exception) {
 
