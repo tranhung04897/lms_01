@@ -55,7 +55,7 @@ return[
     'home' => 'Home',
     'lb-delivery' => 'Free Delivery',
     'lb-quantity' => 'Quantity',
-    'lb-description' => 'Title',
+    'lb-description' => 'Description',
     'lb-comment' => 'Review',
     'lb-add-review' => 'Add Review',
     'your-rating' => 'Your Rating:',

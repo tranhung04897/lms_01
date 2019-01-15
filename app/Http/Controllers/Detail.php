@@ -82,7 +82,7 @@ class Detail extends Controller
     public function show($id)
     {
         $comments = DB::table('comments')->join('users', 'users.id', 'comments.user_id')
-            ->select('comments.id', 'comments.content', 'comments.created_at', 'users.name')
+            ->select('comments.id', 'comments.content', 'comments.created_at', 'users.name', 'comments.status')
             ->where('comments.book_id', $id)->get();
         $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
         $books = DB::table('books')->join('authors', 'authors.id', 'books.author_id')

@@ -69,6 +69,7 @@
                 <h4>@lang('public.lb-comment') ({!! $comments->count() !!})</h4>
             </div>
             @foreach($comments as $comment)
+                @if($comment->status ==1)
             <div class="user_review_container d-flex flex-column flex-sm-row">
                 <div class="user">
                     <div class="user_pic"></div>
@@ -88,6 +89,7 @@
                     <p>{!! $comment->content !!}</p>
                 </div>
             </div>
+                @endif
                 @endforeach
         </div>
 
