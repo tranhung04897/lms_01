@@ -9,19 +9,18 @@ class Book extends Model
     protected $primaryKey = "id";
     public $timestamps = false;
     protected $fillable = [
-        'title',
-        'preview',
         'publisher_id',
         'category_id',
-        'author',
+        'author_id',
+        'preview',
+        'title',
         'picture',
         'page',
-        'rum_like',
-        'rum_comment',
-        'rum_follow',
-        'avg_rate',
+        'num_like',
+        'num_comment',
+        'num_follow',
+        'agv_rate',
     ];
-
     public function category()
     {
         return $this->belongsTo('Category::class');

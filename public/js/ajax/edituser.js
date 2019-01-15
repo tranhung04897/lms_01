@@ -40,3 +40,25 @@ $('#myModalAuthor').on('show.bs.modal', function (event) {
     modal.find('.modal-body #name').val(name);
 
 });
+
+$('#myModalCat').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var id_cat = button.data('id_cat')
+    var name = button.data('name')
+    var parent_id = button.data('parent_id')
+    var modal = $(this)
+
+    modal.find('.modal-body #id_cat').val(id_cat);
+    modal.find('.modal-body #parent_id').val(parent_id);
+    modal.find('.modal-body #name').val(name);
+
+})
+
+$('#myModalCatadd').on('show.bs.modal', function (event) {
+    var button = $(event.relatedTarget)
+    var parent_id = button.data('parent_id')
+    var modal = $(this)
+
+    modal.find('.modal-body #parent_id').val(parent_id);
+
+})

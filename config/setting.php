@@ -11,4 +11,6 @@ return [
     'admin' => 'Admin',
     'quantity' => 1,
     'parent_id' => 0,
+    'status_1' => 1,
+    'status_0' => 0,
 ];

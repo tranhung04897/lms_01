@@ -25,6 +25,12 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
     Route::resource('publisher', 'admin\Publishers' );
     Route::post('publisher/update', 'admin\Publishers@update')->name('publisher.edit');
     Route::resource('publisher/search', 'admin\SearchPublisher');
+    Route::resource('borrow', 'admin\Borrowbook' );
+    Route::post('/borrow/update-status',[
+        'uses' => 'admin\Borrowbook@updateStatus',
+    ]);
+    Route::resource('cat', 'admin\Categorys' );
+    Route::post('cat/update', 'admin\Categorys@update')->name('cat.edit');
 });
 
 Route::group(['prefix' => '/'], function (){
