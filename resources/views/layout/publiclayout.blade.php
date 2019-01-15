@@ -81,9 +81,12 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a href="{{ route('category.show','1') }}">HTML</a></li>
-                                        <li><a href="{{ route('category.show','1') }}">CSS</a></li>
-                                        <li><a href="{{ route('category.show','1') }}">JavaScript</a></li>
+                                        @foreach($categories as $menu)
+                                            <li>
+                                                <a href="{{ route('category.show', $menu->id) }}">{!! $menu->name !!}</a>
+                                                <span class="caret"></span>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="#">@lang('public.nav-author')</a></li>
@@ -96,12 +99,6 @@
                                         <input class="search_input" type="text" name="" placeholder="Search...">
                                         <a href="#" class="search_icon"><i class="fa fa-search"></i></a>
                                     </div>
-                                </li>
-                                <li class="checkout">
-                                    <a href="#">
-                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                                        <span id="checkout_items" class="checkout_items">2</span>
-                                    </a>
                                 </li>
                             </ul>
                             <div class="hamburger_container">

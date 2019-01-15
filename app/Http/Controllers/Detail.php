@@ -3,6 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\Book;
+use App\Models\User;
+use App\Models\Borrow;
+use App\Models\Borrow_Book;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class Detail extends Controller
 {
@@ -32,9 +39,24 @@ class Detail extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request,$id)
     {
-        //
+        try{
+            $borrow = Borrow::create([
+               'user_id' => Auth::user()->id,
+                'day_borrow' => $request->dayborrow,
+                'end_day_borrow' => $request->endborrow,
+                'quantity' => $request->quantity,
+            ]);
+            $borrow_book = new Borrow_Book;
+            $borrow_book->borrow_id = $borrow->id;
+            $borrow_book->book_id = $id;
+            $borrow_book->save();
+            return redirect(route('detail.show',$id))->with('success', trans('public.message-borrow-success'));
+        } catch (Exception $exception) {
+
+            return redirect(route('detail.show',$id))->with('fail', trans('public.message-borrow-fail'));
+        }
     }
 
     /**
@@ -45,7 +67,10 @@ class Detail extends Controller
      */
     public function show($id)
     {
-        return view('user.detail');
+        $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
+        $books = Book::findOrFail($id);
+
+        return view('user.detail', compact('categories', 'books'));
     }
 
     /**

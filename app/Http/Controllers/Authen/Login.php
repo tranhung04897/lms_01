@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Category;
+
 class Login extends Controller
 {
     /**
@@ -14,7 +16,9 @@ class Login extends Controller
      */
     public function index()
     {
-        return view('user.login');
+        $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
+
+        return view('user.login', compact('categories'));
     }
 
     /**

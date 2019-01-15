@@ -47,4 +47,9 @@ return[
     'blog-title' => 'Here are the trends I see coming this fall',
     'blog-meta' => 'by admin | dec 01, 2019',
     'blog-more' => 'Read more',
+    'lb-day-borrow' => 'Day Borrow',
+    'lb-end-borrow' => 'End Day Borrow',
+    'btn-borrow' => 'Borrow',
+    'message-borrow-success' => 'Borrow Successfull, Thanks!',
+    'message-borrow-fail' => 'Borrow Fail, Sorry!',
 ];
