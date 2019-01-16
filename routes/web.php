@@ -25,7 +25,8 @@ Route::group(['prefix' => '/'], function (){
     Route::resource('home', 'Home' );
     Route::resource('category', 'Cat');
     Route::resource('detail', 'Detail');
-    Route::post('detail/borrow/{id}', 'Detail@store')->name('detail.add');
+    Route::post('detail/borrow/{id}', 'Detail@store')->name('detail.add')->middleware('checkLogin');
+    Route::post('detail/rating/{id}', 'Detail@postPost')->name('detail.rate');
     Route::resource('login', 'Authen\Login');
     Route::resource('register', 'Authen\Register');
     //Route::post('home/register', 'admin\Users@update')->name('user.edit');

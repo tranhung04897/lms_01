@@ -6,7 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rate extends Model
 {
-    protected $table = "rates";
+    protected $table = "ratings";
+    protected $primaryKey = "id";
+    protected $fillable = [
+        'rating',
+    ];
 
     public function user()
     {

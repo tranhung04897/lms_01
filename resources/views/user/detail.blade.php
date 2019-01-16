@@ -39,35 +39,30 @@
                     <div class="product_details_title">
                         <h2>{!! $books->title !!}</h2>
                         <p>{!! $books->preview !!}</p>
+                        <a href=""><span>{!! $books->name !!}</span></a>
                     </div>
                     <div class="free_delivery d-flex flex-row align-items-center justify-content-center">
-                        <span class="ti-truck"></span><span>free delivery</span>
+                        <span class="ti-truck"></span><span>@lang('public.lb-delivery')</span>
                     </div>
                     {!! Form::open(['method' => 'POST', 'route' => ['detail.add', $books->id]]) !!}
-                    <ul class="star_rating">
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                    </ul>
-                    <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
-                        <span>Quantity:</span>
-                        <div class="form-control-sm">
-                            <input type="number" name="quantity" value="{{config('setting.quantity')}}">
-                        </div>
-                        <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
-                    </div>
-                    <div class="form-group">
-                        {!! Form::label('dayborrow', trans('public.lb-day-borrow'), ['class' => 'col-md-4 col-form-label']) !!}
-                        {!! Form::date('dayborrow', \Carbon\Carbon::now(), ['class' => 'form-control ']) !!}
-                    </div>
 
-                    <div class="form-group">
-                        {!! Form::label('endborrow', trans('public.lb-end-borrow'), ['class' => 'col-md-4 col-form-label']) !!}
-                        {!! Form::date('endborrow', \Carbon\Carbon::now(), ['class' => 'form-control ']) !!}
-                    </div>
-                    {!! Form::submit(trans('public.btn-borrow'), ['class' => 'btn btn-success btn-md ']) !!}
+                        <div class="quantity d-flex flex-column flex-sm-row align-items-sm-center">
+                            <span>@lang('public.lb-quantity')</span>
+                            <div class="form-control-sm">
+                                <input type="number" name="quantity" value="{{config('setting.quantity')}}">
+                            </div>
+                            <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('dayborrow', trans('public.lb-day-borrow'), ['class' => 'col-md-4 col-form-label']) !!}
+                            {!! Form::date('dayborrow', \Carbon\Carbon::now(), ['class' => 'form-control ']) !!}
+                        </div>
+
+                        <div class="form-group">
+                            {!! Form::label('endborrow', trans('public.lb-end-borrow'), ['class' => 'col-md-4 col-form-label']) !!}
+                            {!! Form::date('endborrow', \Carbon\Carbon::now(), ['class' => 'form-control ']) !!}
+                        </div>
+                        {!! Form::submit(trans('public.btn-borrow'), ['class' => 'btn btn-success btn-md ']) !!}
                     {!! Form::close() !!}
                 </div>
             </div>
@@ -221,4 +216,5 @@
             </div>
         </div>
     </div>
+
 @endsection

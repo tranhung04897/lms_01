@@ -163,6 +163,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        willvincent\Rateable\RateableServiceProvider::class,
         /*
          * Package Service Providers...
          */

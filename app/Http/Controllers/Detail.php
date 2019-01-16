@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Book;
@@ -68,7 +69,9 @@ class Detail extends Controller
     public function show($id)
     {
         $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
-        $books = Book::findOrFail($id);
+        $books = DB::table('books')->join('authors', 'authors.id', 'books.author_id')
+        ->select('books.id', 'books.title', 'books.preview', 'books.picture', 'books.page', 'books.author_id', 'authors.name')
+        ->where('books.id', '=', $id)->first();
 
         return view('user.detail', compact('categories', 'books'));
     }
@@ -105,5 +108,17 @@ class Detail extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function postPost(Request $request)
+    {
+        request()->validate(['rate' => 'required']);
+        $book = Book::find($request->id);
+        $rating = new \willvincent\Rateable\Rating;
+        $rating->rating = $request->rate;
+        $rating->user_id = auth()->user()->id;
+        $book->ratings()->save($rating);
+
+        return redirect()->route("detail.show", $request->id);
     }
 }
