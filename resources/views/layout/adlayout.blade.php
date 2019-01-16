@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="Dashboard">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
         <meta name="csrf-token" content="{{ csrf_token() }}" />
         <title>@lang('admin.title')</title>

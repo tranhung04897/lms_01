@@ -37,6 +37,10 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
         'uses' => 'admin\Books@updateStatus',
     ]);
     Route::resource('searchbook', 'admin\SearchBook' );
+    Route::resource('comment', 'admin\Comments');
+    Route::post('/comment/update-status',[
+        'uses' => 'admin\Comments@updateStatus',
+    ]);
 });
 
 Route::group(['prefix' => '/'], function (){
