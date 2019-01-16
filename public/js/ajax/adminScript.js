@@ -13,7 +13,7 @@ function ajaxToggleActiveStatus(id, presentStatus){
             $( '#active'+id ).replaceWith( data );
         },
         error: function (){
-            alert('có lỗi xảy ra');
+            alert(Lang.get('errors.ajax-error'));
         }
     });
 }
@@ -33,7 +33,27 @@ function ajaxToggleActiveBook(id, presentStatus){
             $( '#active'+id ).replaceWith( data );
         },
         error: function (){
-            alert('có lỗi xảy ra');
+            alert(Lang.get('errors.ajax-error'));
+        }
+    });
+}
+
+function ajaxToggleActiveComment(id, presentStatus){
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $.ajax({
+        url: "/admin/comment/update-status",
+        type: 'POST',
+        cache: false,
+        data: {id:id, presentStatus:presentStatus},
+        success: function(data){
+            $( '#active'+id ).replaceWith( data );
+        },
+        error: function (){
+            alert(Lang.get('errors.ajax-error'));
         }
     });
 }

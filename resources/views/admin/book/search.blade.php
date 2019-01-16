@@ -15,7 +15,7 @@
                         </div>
                         <div class="col-sm-6" >
                             {!! Form::open(['method' => 'POST', 'route' =>'searchbook.store']) !!}
-                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
+                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => trans('admin.txt-search')]) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -50,9 +50,9 @@
                                 <td>
                                     <label class="switch switch-3d switch-success mr-3" id="active{{$book->id}}">
                                         @if($book->status == config('setting.status_1'))
-                                            <a onclick="return ajaxToggleActiveBook({{$book->id}}, 1)"><img src="/assets/images/active.gif" />Accept display</a>
+                                            <a onclick="return ajaxToggleActiveBook({{$book->id}}, {{ config('setting.status_1') }})"><img src="/assets/images/active.gif" />@lang('comment.status-accept')</a>
                                         @else
-                                            <a onclick="return ajaxToggleActiveBook({{$book->id}}, 0)"><img src="/assets/images/deactive.gif" />Reject display</a>
+                                            <a onclick="return ajaxToggleActiveBook({{$book->id}}, {{ config('setting.status_0') }})"><img src="/assets/images/deactive.gif" />@lang('comment.status-reject')</a>
                                         @endif
 
                                     </label>
