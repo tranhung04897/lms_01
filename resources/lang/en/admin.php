@@ -15,4 +15,5 @@ return [
     'menu-comment' => 'Comments',
     'google-map' => 'Google Maps',
     'border-head' => 'USER VISITS',
+    'btn-close' => 'Close',
 ];

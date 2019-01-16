@@ -10,6 +10,7 @@ use App\Models\Borrow;
 use App\Models\Borrow_Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Comment;
 
 class Detail extends Controller
 {
@@ -52,6 +53,7 @@ class Detail extends Controller
             $borrow_book->borrow_id = $borrow->id;
             $borrow_book->book_id = $id;
             $borrow_book->save();
+
             return redirect(route('detail.show',$id))->with('success', trans('public.message-borrow-success'));
         } catch (Exception $exception) {
 
@@ -67,13 +69,16 @@ class Detail extends Controller
      */
     public function show($id)
     {
-        $categories = Category::with('childs')->where('parent_id', '=', 0)->get();
+        $comments = DB::table('comments')->join('users', 'users.id', 'comments.user_id')
+            ->select('comments.id', 'comments.content', 'comments.created_at', 'users.name')
+            ->where('comments.book_id', $id)->get();
+        $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
         $books = DB::table('books')->join('authors', 'authors.id', 'books.author_id')
             ->join('categorys', 'categorys.id', 'books.category_id')
             ->select('books.id', 'books.title', 'books.preview', 'categorys.name as cat_name' , 'books.picture', 'books.page', 'books.author_id', 'authors.name')
-            ->where('books.id', '=', $id)->first();
+            ->where('books.id', $id)->first();
 
-        return view('user.detail', compact('categories', 'books'));
+        return view('user.detail', compact('categories', 'books', 'comments'));
     }
 
     /**

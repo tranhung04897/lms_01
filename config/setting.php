@@ -10,4 +10,5 @@ return [
     'user' => 'User',
     'admin' => 'Admin',
     'quantity' => 1,
+    'parent_id' => '0',
 ];

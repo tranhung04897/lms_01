@@ -66,12 +66,12 @@
                 <div class="col">
                     <div class="product-grid" data-isotope='{ "itemSelector": ".product-item", "layoutMode": "fitRows" }'>
 
-                        @foreach($books as $book)
+                        @foreach($getSearch as $book)
 
                             <div class="product-item {{$book->category_id}}">
                                 <div class="product discount product_filter">
                                     <div class="product_image">
-                                        <img class="mystyle" src="/assets/images/{{$book->picture}}" alt="">
+                                        <img style="height: 235px; width: 235px" src="/assets/images/{{$book->picture}}" alt="">
                                     </div>
                                     <div class="product_info">
                                         <h6 class="product_name"><a href="{{ route('detail.show', $book->id) }}">{{$book->title}}</a></h6>
@@ -93,7 +93,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="deal_ofthe_week_img">
-                        <img src="/assets/images/deal_ofthe_week.png" >
+                        <img src="/assets/images/deal_ofthe_week.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 text-right deal_ofthe_week_col">
