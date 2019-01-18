@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
 
 class Detail extends Controller
 {
@@ -45,7 +46,9 @@ class Detail extends Controller
      */
     public function show($id)
     {
-        return view('user.detail');
+        $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
+
+        return view('user.detail', compact('categories'));
     }
 
     /**
