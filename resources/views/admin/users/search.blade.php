@@ -14,7 +14,7 @@
                         </div>
                         <div class="col-sm-6">
                             {!! Form::open(['method' => 'POST', 'route' =>'search.store']) !!}
-                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
+                                {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => trans('admin.txt-search')]) !!}
                             {!! Form::close() !!}
                         </div>
                     </div>
@@ -45,14 +45,13 @@
 
                             <tr class="gradeX">
                                 <td>{!! $name !!}</td>
-                                <td>{{$gender}}</td>
+                                <td>{!! $gender !!}</td>
                                 <td>{!! $email !!}</td>
-                                <td>{{$role}}</td>
+                                <td>{!! $role !!}</td>
                                 <td>{!! $phone !!}</td>
                                 <td>{!! $address !!}</td>
                                 <td class="center">
-                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}"
-                                            data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
+                                    <button type="button" class="btn btn-primary" data-id_user="{!! $id !!}" data-email="{!! $email!!}" data-name="{!! $name!!}" data-phone="{!! $phone !!}" data-address="{!! $address !!}" data-toggle="modal" data-target="#myModal1">
                                         <i class="fa fa-edit "></i>@lang('user.btn-edit')
                                     </button>
                                     @include('admin.users.edit')
