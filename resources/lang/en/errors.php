@@ -9,6 +9,7 @@ return[
     'name-required' => 'Name is required',
     'name-max' => 'Max length 50 characters',
     'address-required' => 'Address is required',
+    'description-required' => 'Description is required',
     'phone-required' => 'Phone is required',
     'gender-required' => 'Gender is required',
     'dob-required' => 'Birthday is required',

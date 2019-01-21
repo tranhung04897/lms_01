@@ -22,7 +22,9 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
     Route::resource('author', 'admin\Authors' );
     Route::post('author/update', 'admin\Authors@update')->name('author.edit');
     Route::resource('searchauth', 'admin\SearchAuthor' );
-
+    Route::resource('publisher', 'admin\Publishers' );
+    Route::post('publisher/update', 'admin\Publishers@update')->name('publisher.edit');
+    Route::resource('publisher/search', 'admin\SearchPublisher');
 });
 
 Route::group(['prefix' => '/'], function (){

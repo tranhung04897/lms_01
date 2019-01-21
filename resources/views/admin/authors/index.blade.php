@@ -43,7 +43,7 @@
                                 <td>{!! $name !!}</td>
                                 <td>{!! $follow !!}</td>
                                 <td class="center">
-                                    <button type="button" class="btn btn-primary" data-id_author="{!! $id !!}" data-name="{!! $name!!}" data-toggle="modal" data-target="#myModal1">
+                                    <button type="button" class="btn btn-primary" data-id_author="{!! $id !!}" data-name="{!! $name!!}" data-toggle="modal" data-target="#myModalAuthor">
                                         <i class="fa fa-edit "></i>@lang('user.btn-edit')
                                     </button>
                                     @include('admin.authors.edit')
