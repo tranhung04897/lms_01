@@ -72,4 +72,5 @@ return[
     'mail-content' => 'Below is the book information you borrowed from our library:',
     'mail-sb' => 'Borrow Information',
     'admin-said' => 'We will check your borrow, thanks',
+    'book-follow' => 'Book Follow',
 ];

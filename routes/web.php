@@ -45,8 +45,14 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
 
 Route::group(['prefix' => '/'], function (){
     Route::resource('home', 'Home' );
+    Route::post('/home/follow-book',[
+        'uses' => 'Home@bookRemember',
+    ])->middleware('checkLogin');
     Route::resource('category', 'Cat');
     Route::resource('detail', 'Detail');
+    Route::post('/detail/follow-book',[
+        'uses' => 'Detail@bookRemember',
+    ])->middleware('checkLogin');
     Route::post('detail/borrow/{id}', 'Detail@store')->name('detail.add');
     Route::resource('comment', 'Comments')->middleware('checkLogin');
     Route::resource('comment', 'Comments')->middleware('checkLogin');
@@ -54,5 +60,5 @@ Route::group(['prefix' => '/'], function (){
     Route::resource('register', 'Authen\Register');
     Route::resource('cart', 'Carts')->middleware('checkLogin');
     Route::post('cart/delete', 'Carts@delItem')->name('cart.del');
-
+    Route::resource('follow', 'Follows')->middleware('checkLogin');
 });

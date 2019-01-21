@@ -37,7 +37,19 @@
                 <div class="product_details">
                     <div class="product_details_title">
                         <h2>{!! $books->title !!}</h2>
-                        <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                        @if(Auth::check())
+                            <span id="word{{$books->id}}">
+                                @if(array_key_exists($books->id, $followBook))
+                                    <div class="product_favorite d-flex flex-column align-items-center justify-content-center active"></div>
+                                @else
+                                    <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                                @endif
+                                </span>
+                        @else
+                            <span class="saveBook" data-confirm="login before follow">
+                                <div class="product_favorite d-flex flex-column align-items-center justify-content-center"></div>
+                            </span>
+                        @endif
                         <p>{!! $books->preview !!}</p>
                         <a href=""><span>{!! $books->name !!}</span></a>
                     </div>

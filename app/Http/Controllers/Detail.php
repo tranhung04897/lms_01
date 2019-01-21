@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
-use App\Models\Book;
+use App\Models\Follow;
 use App\Models\User;
 use App\Models\Borrow;
 use App\Models\Borrow_Book;
@@ -84,13 +84,14 @@ class Detail extends Controller
         $comments = DB::table('comments')->join('users', 'users.id', 'comments.user_id')
             ->select('comments.id', 'comments.content', 'comments.created_at', 'users.name', 'comments.status')
             ->where('comments.book_id', $id)->get();
+        $followBook = Follow::pluck('id', 'book_id')->toArray();
         $categories = Category::with('childs')->where('parent_id', config('setting.parent_id'))->get();
         $books = DB::table('books')->join('authors', 'authors.id', 'books.author_id')
             ->join('categorys', 'categorys.id', 'books.category_id')
             ->select('books.id', 'books.title', 'books.preview', 'categorys.name as cat_name' , 'books.picture', 'books.page', 'books.author_id', 'authors.name')
             ->where('books.id', $id)->first();
 
-        return view('user.detail', compact('categories', 'books', 'comments'));
+        return view('user.detail', compact('categories', 'books', 'comments', 'followBook'));
     }
 
     /**

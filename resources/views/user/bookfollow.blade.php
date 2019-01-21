@@ -78,12 +78,12 @@
                                     </div>
                                 </div>
                                 @if(Auth::check())
-                                <span id="word{{$book->id}}">
+                                    <span id="word{{$book->id}}">
                                     @if(array_key_exists($book->id, $followBook))
-                                        <div class="favorite favorite_left active" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
-                                    @else
-                                        <div class="favorite favorite_left" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
-                                    @endif
+                                            <div class="favorite favorite_left active" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
+                                        @else
+                                            <div class="favorite favorite_left" onclick="return ajaxToggleWordRemember({{$book->id}})"></div>
+                                        @endif
                                 </span>
                                 @else
                                     <span class="saveBook" data-confirm="login before follow">
@@ -91,9 +91,9 @@
                                     </span>
                                 @endif
                                     {!! Form::open(['method'=>'PUT', 'route'=>['cart.update', $book->id], 'class' => 'red_button add_to_cart_button']) !!}
-                                    {!! Form::hidden('book_id', $book->id) !!}
-                                    {!! Form::hidden('_token', csrf_token()) !!}
-                                    {{ Form::submit(trans('public.btn-borrow', ['class' => 'red_button add_to_cart_button']))  }}
+                                        {!! Form::hidden('book_id', $book->id) !!}
+                                        {!! Form::hidden('_token', csrf_token()) !!}
+                                        {{ Form::submit(trans('public.btn-borrow', ['class' => 'red_button add_to_cart_button']))  }}
                                 {!! Form::close() !!}
                             </div>
                         @endforeach
