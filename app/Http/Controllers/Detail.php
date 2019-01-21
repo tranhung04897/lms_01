@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
 use Cart;
+use Mail;
 
 class Detail extends Controller
 {
@@ -49,6 +50,8 @@ class Detail extends Controller
                 'day_borrow' => $request->dayborrow,
                 'end_day_borrow' => $request->endborrow,
             ]);
+            $cart = Cart::content()->toArray();
+            //dd($cart);
             if(Cart::count()){
                 foreach (Cart::content() as $item){
                     $borrow_book = new Borrow_Book;
@@ -58,6 +61,9 @@ class Detail extends Controller
                     $borrow_book->save();
                 }
             }
+            Mail::send('user.mail', $cart, function($message){
+                $message->to(Auth::user()->email, Auth::user()->name)->subject(trans('public.mail-sb'));
+            });
             Cart::destroy();
 
             return redirect(route('cart.create'))->with('success', trans('public.message-borrow-success'));

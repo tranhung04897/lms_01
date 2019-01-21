@@ -55,7 +55,7 @@ return[
     'home' => 'Home',
     'lb-delivery' => 'Free Delivery',
     'lb-quantity' => 'Quantity',
-    'lb-description' => 'Description',
+    'lb-description' => 'Title',
     'lb-comment' => 'Review',
     'lb-add-review' => 'Add Review',
     'your-rating' => 'Your Rating:',
@@ -68,4 +68,8 @@ return[
     'cart-empty' => 'You have no items in the shopping cart',
     'btn-back' => 'Back Library',
     'borrow-cart' => 'Borrow Carts',
+    'hello-mail' => 'Hello,',
+    'mail-content' => 'Below is the book information you borrowed from our library:',
+    'mail-sb' => 'Borrow Information',
+    'admin-said' => 'We will check your borrow, thanks',
 ];

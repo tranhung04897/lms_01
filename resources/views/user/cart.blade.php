@@ -4,7 +4,7 @@
         <div class="container product_section_container">
             <div class="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li><a href="/home">@lang('public.nav-home')</a></li>
+                    <li><a href="{{ url('/home')}}">@lang('public.nav-home')</a></li>
                     <li class="active">@lang('public.borrow-cart')</li>
                 </ul>
                 <div>
@@ -13,7 +13,7 @@
                             @lang('public.btn-back')
                         </a>
                     </span>
-                    @include('errors.error')
+                    @include('errors.alert')
                 </div>
             </div>
                 <div class="table-responsive cart_info">
