@@ -65,8 +65,9 @@
     <div class="row">
         <div class="col-lg-6 reviews_col">
             <div class="tab_title reviews_title">
-                <h4>@lang('public.lb-comment')</h4>
+                <h4>@lang('public.lb-comment') ({!! $comments->count() !!})</h4>
             </div>
+            @foreach($comments as $comment)
             <div class="user_review_container d-flex flex-column flex-sm-row">
                 <div class="user">
                     <div class="user_pic"></div>
@@ -81,17 +82,19 @@
                     </div>
                 </div>
                 <div class="review">
-                    <div class="review_date"></div>
-                    <div class="user_name"></div>
-                    <p></p>
+                    <div class="review_date">{!! $comment->created_at !!}</div>
+                    <div class="user_name">{!! $comment->name !!}</div>
+                    <p>{!! $comment->content !!}</p>
                 </div>
             </div>
+                @endforeach
         </div>
 
         <div class="col-lg-6 add_review_col">
 
             <div class="add_review">
-                <form id="review_form" action="post">
+                {!! Form::open(['method' => 'POST', 'route' => 'comment.store', 'id' => 'review_form']) !!}
+                    {!! Form::hidden('book_id', $books->id, ['id' => 'id_book']) !!}
                     <div>
                         <h1>@lang('public.your-rating')</h1>
                         <ul class="user_star_rating">
@@ -101,12 +104,12 @@
                             <li><i class="fa fa-star" aria-hidden="true"></i></li>
                             <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                         </ul>
-                        <textarea id="review_message" class="input_review" name="message"  placeholder="{{ trans('public.your-rev') }}" rows="4" required ></textarea>
+                        {!! Form::textarea('message', '', ['class'=>'input_review', 'id' => 'review_message', 'row' => 4, 'placeholder' => trans('public.your-rev')]) !!}
                     </div>
                     <div class="text-left text-sm-right">
-                        <button id="review_submit" type="submit" class="red_button review_submit_btn trans_300" value="{!! trans('public.btn-review') !!}">@lang('public.btn-review')</button>
+                        {!! Form::submit(trans('public.btn-review'), ['class' => 'red_button review_submit_btn trans_300']) !!}
                     </div>
-                </form>
+                {!! Form::close() !!}
             </div>
 
         </div>
