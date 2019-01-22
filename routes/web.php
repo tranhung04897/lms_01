@@ -37,10 +37,11 @@ Route::group(['prefix' => 'admin/', 'middleware' => 'checkAdminLogin'], function
         'uses' => 'admin\Books@updateStatus',
     ]);
     Route::resource('searchbook', 'admin\SearchBook' );
-    Route::resource('comment', 'admin\Comments');
+    Route::resource('adcomment', 'admin\Comments');
     Route::post('/comment/update-status',[
         'uses' => 'admin\Comments@updateStatus',
     ]);
+
 });
 
 Route::group(['prefix' => '/'], function (){
@@ -55,10 +56,12 @@ Route::group(['prefix' => '/'], function (){
     ])->middleware('checkLogin');
     Route::post('detail/borrow/{id}', 'Detail@store')->name('detail.add');
     Route::resource('comment', 'Comments')->middleware('checkLogin');
-    Route::resource('comment', 'Comments')->middleware('checkLogin');
     Route::resource('login', 'Authen\Login');
     Route::resource('register', 'Authen\Register');
     Route::resource('cart', 'Carts')->middleware('checkLogin');
     Route::post('cart/delete', 'Carts@delItem')->name('cart.del');
     Route::resource('follow', 'Follows')->middleware('checkLogin');
+});
+Route::get('/markAsRead', function (){
+    Auth()->user()->unreadNotifications->markAsRead();
 });

@@ -10,7 +10,7 @@
                             @include('errors.error')
                         </div>
                         <div class="col-sm-6" >
-                            {!! Form::open(['method' => 'POST', 'route' =>'comment.store']) !!}
+                            {!! Form::open(['method' => 'POST', 'route' =>'adcomment.store']) !!}
                                 {!! Form::text('search', '', ['class' => 'form-control input-sm', 'placeholder' => 'Enter Search']) !!}
                             {!! Form::close() !!}
                         </div>
@@ -56,7 +56,7 @@
                                     </label>
                                 </td>
                                 <td class="center">
-                                    {!! Form::open(['method' => 'DELETE', 'route' => ['comment.destroy', $id]]) !!}
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['adcomment.destroy', $id]]) !!}
                                         {!! Form::submit(trans('user.btn-del'), ['class' => 'btn btn-danger']) !!}
                                     {!! Form::close() !!}
 

@@ -61,6 +61,7 @@ class Comments extends Controller
             ->join('books', 'books.id', 'comments.book_id')
             ->select('comments.id', 'users.name', 'books.title', 'comments.status', 'comments.created_at', 'comments.content')
             ->where('users.name', 'like', "%$keySearch%")
+            ->orWhere('books.title', 'like', "%$keySearch%")
             ->orderBy('comments.id', 'desc')
             ->paginate(config('setting.paginate-default'));
 

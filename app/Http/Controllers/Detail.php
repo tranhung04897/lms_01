@@ -10,10 +10,11 @@ use App\Models\Borrow;
 use App\Models\Borrow_Book;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\BorrowRequest;
 use App\Models\Comment;
 use Cart;
 use Mail;
-
+use App\Notifications\AdminNotification;
 class Detail extends Controller
 {
     /**
@@ -42,8 +43,9 @@ class Detail extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BorrowRequest $request)
     {
+        $admin = User::where('role', '1')->first();
         try {
             $borrow = Borrow::create([
                 'user_id' => Auth::user()->id,
@@ -64,6 +66,7 @@ class Detail extends Controller
             Mail::send('user.mail', $cart, function($message){
                 $message->to(Auth::user()->email, Auth::user()->name)->subject(trans('public.mail-sb'));
             });
+            $admin->notify(new AdminNotification());
             Cart::destroy();
 
             return redirect(route('cart.create'))->with('success', trans('public.message-borrow-success'));

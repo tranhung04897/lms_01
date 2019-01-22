@@ -45,7 +45,7 @@
                                 <td>{!! $book->auth_name !!}</td>
                                 <td>{!! $book->pub_name !!}</td>
                                 <td>
-                                    <img class="mystyle1" src="/assets/images/{!! $book->picture !!}">
+                                    <img class="mystyle2" src="/assets/images/{!! $book->picture !!}">
                                 </td>
                                 <td>
                                     <label class="switch switch-3d switch-success mr-3" id="active{{$book->id}}">

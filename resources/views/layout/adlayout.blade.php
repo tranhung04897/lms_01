@@ -26,9 +26,33 @@
             <div class="sidebar-toggle-box">
                 <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
             </div>
-            <a href="index.html" class="logo"><b>@lang('admin.logo')</b></a>
-
+            <a href="/admin/admin" class="logo"><b>@lang('admin.logo')</b></a>
+            <div class="nav notify-row" id="top_menu">
+                <ul class="nav top-menu">
+                    <li id="header_notification_bar" class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="" id="markasread" onclick="return markNotificationAsRead({{count(Auth()->user()->unreadNotifications)}})">
+                            <i class="fa fa-bell-o"></i>
+                            <span class="badge bg-warning">{!! count(Auth()->user()->unreadNotifications)  !!} </span>
+                        </a>
+                        <ul class="dropdown-menu extended notification">
+                            <div class="notify-arrow notify-arrow-yellow"></div>
+                            <li>
+                                <p class="yellow">You have {!! count(Auth()->user()->unreadNotifications) !!} new notifications</p>
+                            </li>
+                            @foreach(Auth()->user()->unreadNotifications as $ns)
+                                <li>
+                                    <a href="/admin/borrow">{{ $ns->data['user']['name'] }}</a>
+                                </li>
+                            @endforeach
+                            <li>
+                                <a href="{!! route('borrow.index') !!}">See all notifications</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
             <div class="top-menu">
+
                 <ul class="nav pull-right top-menu">
                     <li><a class="logout" href="{{route('login.create')}}">@lang('admin.logout-link')</a></li>
                 </ul>
@@ -51,20 +75,21 @@
                             <span>@lang('admin.menu-table')</span>
                         </a>
                         <ul class="sub">
-                            <li><a href="/">@lang('admin.sub-category')</a></li>
-                            <li><a href="/">@lang('admin.sub-book')</a></li>
-                            <li><a href="/">@lang('admin.sub-author')</a></li>
-                            <li><a href="/">@lang('admin.sub-publisher')</a></li>
+                            <li><a href="{!! route('cat.index') !!}">@lang('admin.sub-category')</a></li>
+                            <li><a href="{!! route('book.index') !!}">@lang('admin.sub-book')</a></li>
+                            <li><a href="{!! route('author.index') !!}">@lang('admin.sub-author')</a></li>
+                            <li><a href="{!! route('publisher.index') !!}">@lang('admin.sub-publisher')</a></li>
+                            <li><a href="{!! route('publisher.index') !!}">@lang('admin.sub-publisher')</a></li>
                         </ul>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;">
+                        <a href="{!! route('user.index') !!}">
                             <i class="fa fa-users"></i>
                             <span>@lang('admin.menu-user')</span>
                         </a>
                     </li>
                     <li class="sub-menu">
-                        <a href="javascript:;">
+                        <a href="{!! route('adcomment.index') !!}">
                             <i class="fa fa-comments"></i>
                             <span>@lang('admin.menu-comment')</span>
                         </a>
