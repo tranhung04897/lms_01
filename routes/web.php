@@ -45,3 +45,8 @@ Route::group(['prefix' => '/'], function (){
     Route::post('cart/delete', 'Carts@delItem')->name('cart.del');
     Route::resource('follow', 'Follows')->middleware('checkLogin');
 });
+Route::get('/', function () {
+    return view('welcome');
+});
+Route::get('/send', 'SendMessageController@index')->name('send');
+Route::post('/postMessage', 'SendMessageController@sendMessage')->name('postMessage');

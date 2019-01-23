@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Comment;
 use Cart;
 use Mail;
+use Pusher\Pusher;
 
 class Detail extends Controller
 {
@@ -51,7 +52,6 @@ class Detail extends Controller
                 'end_day_borrow' => $request->endborrow,
             ]);
             $cart = Cart::content()->toArray();
-            //dd($cart);
             if(Cart::count()){
                 foreach (Cart::content() as $item){
                     $borrow_book = new Borrow_Book;
@@ -64,6 +64,22 @@ class Detail extends Controller
             Mail::send('user.mail', $cart, function($message){
                 $message->to(Auth::user()->email, Auth::user()->name)->subject(trans('public.mail-sb'));
             });
+            $data['name'] = Auth::user()->name;
+            $data['content'] = trans('public.content-mail');
+            $options = array(
+                'cluster' => 'ap1',
+                'encrypted' => true
+            );
+
+            $pusher = new Pusher(
+                'eab8eefadd1424995667',
+                'b3ceac268d33cbec07f5',
+                '697582',
+                $options
+            );
+
+            $pusher->trigger('Notify', 'send-message', $data);
+
             Cart::destroy();
 
             return redirect(route('cart.create'))->with('success', trans('public.message-borrow-success'));

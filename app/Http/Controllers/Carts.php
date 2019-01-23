@@ -90,7 +90,7 @@ class Carts extends Controller
             'options' => ['picture' => $book->picture],
         ];
         Cart::add($cartInfo);
-        //dd($cart);
+
         return redirect()->back();
     }
 

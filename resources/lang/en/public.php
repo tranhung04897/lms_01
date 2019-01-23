@@ -74,4 +74,5 @@ return[
     'admin-said' => 'We will check your borrow, thanks',
     'book-follow' => 'Book Follow',
     'all' => 'All',
+    'content-mail' => 'Borrowed books from the library',
 ];
